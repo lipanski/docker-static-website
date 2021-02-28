@@ -29,4 +29,8 @@ docker run -it --rm -p 3000:3000 my-static-website
 
 Browse to `http://localhost:3000`.
 
-Alternatively, you can also copy and use the `Dockerfile` inside this Git repository.
+If you need to configure the server in a different way, you can override the `CMD` line:
+
+```dockerfile
+CMD ["/thttpd", "-D", "-h", "0.0.0.0", "-p", "3000", "-d", "/home/static", "-u", "static", "-l", "-", "-M", "60"]
+```
