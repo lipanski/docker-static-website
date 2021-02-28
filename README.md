@@ -2,6 +2,8 @@
 
 A very small Docker image (~200KB) to run any static website, based on the [thttpd](https://www.acme.com/software/thttpd/) static file server.
 
+For more details, check out [my article on this topic](https://lipanski.com/posts/smallest-docker-image-static-website).
+
 ## Usage
 
 The image is hosted on [Docker Hub](https://hub.docker.com/r/lipanski/docker-static-website):
