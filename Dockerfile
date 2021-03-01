@@ -18,7 +18,7 @@ RUN cd /thttpd \
 # Create a non-root user to own the files and run our server
 RUN adduser -D static
 
-# Switch do the scratch image
+# Switch to the scratch image
 FROM scratch
 
 EXPOSE 3000
