@@ -32,5 +32,10 @@ Browse to `http://localhost:3000`.
 If you need to configure the server in a different way, you can override the `CMD` line:
 
 ```dockerfile
+FROM lipanski/docker-static-website:latest
+
+# Copy your static files
+COPY . .
+
 CMD ["/thttpd", "-D", "-h", "0.0.0.0", "-p", "3000", "-d", "/home/static", "-u", "static", "-l", "-", "-M", "60"]
 ```
