@@ -1,3 +1,5 @@
 .git/
 Dockerfile
+*.Dockerfile
 README.md
+LICENSE

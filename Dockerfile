@@ -1,19 +1,20 @@
 FROM alpine:3.13.2 AS builder
 
-ARG THTTPD_VERSION=2.29
+# Install all dependencies required for compiling busybox
+RUN apk add gcc musl-dev make perl
 
-# Install all dependencies required for compiling thttpd
-RUN apk add gcc musl-dev make
+# Download busybox sources
+RUN wget https://busybox.net/downloads/busybox-1.35.0.tar.bz2 \
+  && tar xf busybox-1.35.0.tar.bz2 \
+  && mv /busybox-1.35.0 /busybox
 
-# Download thttpd sources
-RUN wget http://www.acme.com/software/thttpd/thttpd-${THTTPD_VERSION}.tar.gz \
-  && tar xzf thttpd-${THTTPD_VERSION}.tar.gz \
-  && mv /thttpd-${THTTPD_VERSION} /thttpd
+WORKDIR /busybox
 
-# Compile thttpd to a static binary which we can copy around
-RUN cd /thttpd \
-  && ./configure \
-  && make CCOPT='-O2 -s -static' thttpd
+# Copy the busybox build config (limited to httpd)
+COPY .config .
+
+# Compile and install busybox
+RUN make && make install
 
 # Create a non-root user to own the files and run our server
 RUN adduser -D static
@@ -26,8 +27,8 @@ EXPOSE 3000
 # Copy over the user
 COPY --from=builder /etc/passwd /etc/passwd
 
-# Copy the thttpd static binary
-COPY --from=builder /thttpd/thttpd /
+# Copy the busybox static binary
+COPY --from=builder /busybox/_install/bin/busybox /
 
 # Use our non-root user
 USER static
@@ -35,7 +36,8 @@ WORKDIR /home/static
 
 # Copy the static website
 # Use the .dockerignore file to control what ends up inside the image!
-COPY . .
+# NOTE: Commented out since this will also copy the .config file
+# COPY . .
 
-# Run thttpd
-CMD ["/thttpd", "-D", "-h", "0.0.0.0", "-p", "3000", "-d", "/home/static", "-u", "static", "-l", "-", "-M", "60"]
+# Run busybox httpd
+CMD ["/busybox", "httpd", "-f", "-v", "-p", "3000"]
