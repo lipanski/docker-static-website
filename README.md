@@ -39,7 +39,7 @@ FROM lipanski/docker-static-website:latest
 # Copy your static files
 COPY . .
 
-CMD ["/busybox", "httpd", "-f", "-v", "-p", "3000"]
+CMD ["/busybox", "httpd", "-f", "-v", "-p", "3000", "-c", "httpd.conf"]
 ```
 
 **NOTE:** Sending a `TERM` signal to your TTY running the container won't get propagated due to how busybox is built. Instead you can call `docker stop` (or `docker kill` if can't wait 15 seconds). Alternatively you can run the container with `docker run -it --rm --init` which will propagate signals to the process correctly.
