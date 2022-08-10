@@ -63,8 +63,12 @@ P:/some/old/path:[http://]hostname[:port]/some/new/path
 Add a `httpd.conf` file and use the `E404` directive:
 
 ```
-E404:/path/e404.html # /path/e404.html is the 404 (not found) error page
+E404:e404.html
 ```
+
+...where `e404.html` is your custom 404 page.
+
+Note that the error page directive is only processed for your main `httpd.conf` file. It will raise an error if you use it in `httpd.conf` files added to subdirectories.
 
 ### How can I implement allow/deny rules?
 
