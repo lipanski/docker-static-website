@@ -22,6 +22,8 @@ RUN adduser -D static
 # Switch to the scratch image
 FROM scratch
 
+STOPSIGNAL SIGKILL
+
 EXPOSE 3000
 
 # Copy over the user

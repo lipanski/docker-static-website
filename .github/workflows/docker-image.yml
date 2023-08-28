@@ -9,13 +9,13 @@ on:
 jobs:
 
   build:
-
+    environment: production
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag danielmcdonough/docker-static-website:$(date +%s)
+      run: docker build . --file Dockerfile --tag danielmcdonough/docker-static-website:${{ github.ref_name }}
 
     - name: Login to Dockerhub
       uses: docker/login-action@v2.2.0
@@ -28,4 +28,4 @@ jobs:
       with:
         context: "${{ github.workspace }}"
         push: true
-        tags: danielmcdonough/docker-static-website:$(date +%s)
+        tags: danielmcdonough/docker-static-website:${{ github.ref_name }}
