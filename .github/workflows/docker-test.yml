@@ -1,0 +1,25 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "dev" ]
+
+jobs:
+
+  build:
+    environment: dev
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag docker-static-website:test
+
+    - name: Html
+      run: echo "hello" > index.html
+
+    - name: Test Run
+      run: docker run -d -p "3000:3000" -v "./index.html:/home/static/index.html" -d docker-static-website:test
+
+    - name: Test curl
+      run: curl localhost:3000
