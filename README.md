@@ -100,3 +100,50 @@ Add a `httpd.conf` file, listing the paths that should be protected and the corr
 ### Where can I find the documentation for BusyBox httpd?
 
 Read the [source code comments](https://git.busybox.net/busybox/tree/networking/httpd.c).
+
+## Development
+
+Clone the [busybox repo](https://git.busybox.net/busybox/tree) and create a blank config:
+
+```
+make allnoconfig
+```
+
+Copy the resulting `.config` to this project, diff it against the old one and re-enable everything that seems reasonable (mostly the `HTTPD` features).
+
+Uncomment the `COPY . .` line in the `Dockerfile`, add a dummy `index.html` and build a test image:
+
+```
+docker build -t docker-static-website-test .
+```
+
+Then run it:
+
+```
+docker run -it --rm --init -p 3000:3000 docker-static-website-test
+```
+
+Browse to `http://localhost:3000` and check that the contents of the `index.html` file were rendered correctly.
+
+## Release
+
+Build the image:
+
+```
+docker build -t lipanski/docker-static-website:1.2.3 .
+```
+
+Push the image to Docker Hub:
+
+```
+docker push lipanski/docker-static-website:1.2.3
+```
+
+Tag the release:
+
+```
+git tag 1.2.3
+git push --tags
+```
+
+
