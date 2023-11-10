@@ -130,13 +130,14 @@ Browse to `http://localhost:3000` and check that the contents of the `index.html
 Build the image:
 
 ```
-docker build -t lipanski/docker-static-website:1.2.3 .
+docker build -t lipanski/docker-static-website:1.2.3 -t lipanski/docker-static-website:latest .
 ```
 
 Push the image to Docker Hub:
 
 ```
 docker push lipanski/docker-static-website:1.2.3
+docker push lipanski/docker-static-website:latest
 ```
 
 Tag the release:
