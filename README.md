@@ -1,5 +1,7 @@
 # docker-static-website
 
+[![docker:lipanski/docker-static-website](https://img.shields.io/docker/v/lipanski/docker-static-website?logo=docker&label=lipanski%2Fdocker-static-website)](https://hub.docker.com/r/lipanski/docker-static-website/tags)
+
 A very small Docker image (~154KB) to run any static website, based on the [BusyBox httpd](https://www.busybox.net/) static file server.
 
 > If you're using the previous version (1.x, based on *thttpd*), I recommend upgrading since the new version (2.x) comes with a much smaller memory footprint.
@@ -8,7 +10,7 @@ For more details, check out [my article](https://lipanski.com/posts/smallest-doc
 
 ## Usage
 
-The image is hosted on [Docker Hub](https://hub.docker.com/r/lipanski/docker-static-website):
+The image is hosted on [Docker Hub](https://hub.docker.com/r/lipanski/docker-static-website/tags) and comes with **linux/amd64** and **linux/arm64** builds:
 
 ```dockerfile
 FROM lipanski/docker-static-website:latest
