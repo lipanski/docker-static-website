@@ -33,7 +33,7 @@ jobs:
         with:
           file: Dockerfile
           outputs: "type=registry,push=true"
-          platforms: linux/amd64,linux/arm/v7,linux/arm64
+          platforms: linux/amd64,linux/arm64
           tags: |
             lipanski/docker-static-website:${{ env.TAG }}
             lipanski/docker-static-website:latest
