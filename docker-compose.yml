@@ -1,0 +1,11 @@
+---
+version: "3.9"
+services:
+  webserver:
+    image: lipanski/docker-static-website:latest
+    restart: always
+    ports:
+      - "3000:3000"
+    volumes:
+      - /data/web:/home/static
+      - ./httpd.conf:/home/static/httpd.conf:ro
