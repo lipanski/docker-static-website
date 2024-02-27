@@ -101,6 +101,26 @@ Add a `httpd.conf` file, listing the paths that should be protected and the corr
 
 Read the [source code comments](https://git.busybox.net/busybox/tree/networking/httpd.c).
 
+### How can I run this in Docker Compose?
+
+Create a `docker-compose.yml` file:
+
+```
+---
+version: "3.9"
+services:
+  webserver:
+    image: lipanski/docker-static-website:latest
+    restart: always
+    ports:
+      - "3000:3000"
+    volumes:
+      - /some/local/path:/home/static
+      - ./httpd.conf:/home/static/httpd.conf:ro
+```
+
+Make sure to change `/some/local/path` to the path to your static files. Include an empty or valid `httpd.conf` file.
+
 ## Development
 
 Clone the [busybox repo](https://git.busybox.net/busybox/tree) and create a blank config:
