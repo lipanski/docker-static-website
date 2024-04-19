@@ -17,8 +17,8 @@ WORKDIR /busybox
 # Copy the busybox build config (limited to httpd)
 COPY .config .
 
-# Compile and install busybox
-RUN make && make install
+# Compile
+RUN make
 
 # Create a non-root user to own the files and run our server
 RUN adduser -D static
@@ -32,7 +32,7 @@ EXPOSE 3000
 COPY --from=builder /etc/passwd /etc/passwd
 
 # Copy the busybox static binary
-COPY --from=builder /busybox/_install/bin/busybox /
+COPY --from=builder /busybox/busybox /
 
 # Use our non-root user
 USER static
