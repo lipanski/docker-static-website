@@ -18,7 +18,7 @@ WORKDIR /busybox
 COPY .config .
 
 # Compile
-RUN make
+RUN make && ./make_single_applets.sh
 
 # Create a non-root user to own the files and run our server
 RUN adduser -D static
@@ -31,8 +31,8 @@ EXPOSE 3000
 # Copy over the user
 COPY --from=builder /etc/passwd /etc/passwd
 
-# Copy the busybox static binary
-COPY --from=builder /busybox/busybox /
+# Copy the static binary
+COPY --from=builder /busybox/busybox_HTTPD /busybox_HTTPD
 
 # Use our non-root user
 USER static
@@ -50,4 +50,4 @@ COPY httpd.conf .
 # COPY . .
 
 # Run busybox httpd
-CMD ["/busybox", "httpd", "-f", "-v", "-p", "3000", "-c", "httpd.conf"]
+CMD ["/busybox_HTTPD", "-f", "-v", "-p", "3000", "-c", "httpd.conf"]
