@@ -2,7 +2,7 @@
 
 [![docker:lipanski/docker-static-website](https://img.shields.io/docker/v/lipanski/docker-static-website?logo=docker&label=lipanski%2Fdocker-static-website)](https://hub.docker.com/r/lipanski/docker-static-website/tags)
 
-A very small Docker image (~154KB) to run any static website, based on the [BusyBox httpd](https://www.busybox.net/) static file server.
+A very small Docker image (~80KB) to run any static website, based on the [BusyBox httpd](https://www.busybox.net/) static file server.
 
 For more details, check out [my article](https://lipanski.com/posts/smallest-docker-image-static-website).
 
@@ -147,6 +147,15 @@ Browse to `http://localhost:3000` and check that the contents of the `index.html
 
 ## Release
 
+Images are build automatically by Github Actions whenever a new tag is pushed:
+
+```
+git tag 1.2.3
+git push --tags
+```
+
+### Manual process
+
 Build the image:
 
 ```
@@ -159,12 +168,3 @@ Push the image to Docker Hub:
 docker push lipanski/docker-static-website:1.2.3
 docker push lipanski/docker-static-website:latest
 ```
-
-Tag the release:
-
-```
-git tag 1.2.3
-git push --tags
-```
-
-
