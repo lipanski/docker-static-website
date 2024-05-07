@@ -115,8 +115,8 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - /some/local/path:/home/static
-      - ./httpd.conf:/home/static/httpd.conf:ro
+      - /some/local/path:/home/static:Z
+      - ./httpd.conf:/home/static/httpd.conf:ro,Z
 ```
 
 Make sure to change `/some/local/path` to the path to your static files. Include an empty or valid `httpd.conf` file.
