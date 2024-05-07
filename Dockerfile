@@ -32,7 +32,7 @@ EXPOSE 3000
 COPY --from=builder /etc/passwd /etc/passwd
 
 # Copy the static binary
-COPY --from=builder /busybox/busybox_HTTPD /busybox_HTTPD
+COPY --from=builder /busybox/busybox_HTTPD /busybox-httpd
 
 # Use our non-root user
 USER static
@@ -50,4 +50,4 @@ COPY httpd.conf .
 # COPY . .
 
 # Run busybox httpd
-CMD ["/busybox_HTTPD", "-f", "-v", "-p", "3000", "-c", "httpd.conf"]
+CMD ["/busybox-httpd", "-f", "-v", "-p", "3000", "-c", "httpd.conf"]
