@@ -6,6 +6,8 @@ A very small Docker image (~80KB) to run any static website, based on the [BusyB
 
 For more details, check out [my article](https://lipanski.com/posts/smallest-docker-image-static-website).
 
+Make sure to check the [Releases](https://github.com/lipanski/docker-static-website/releases) page for new versions and breaking changes.
+
 ## Usage
 
 The image is hosted on [Docker Hub](https://hub.docker.com/r/lipanski/docker-static-website/tags) and comes with **linux/amd64** and **linux/arm64** builds:
