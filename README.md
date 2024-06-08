@@ -10,7 +10,7 @@ Check the [Releases](https://github.com/lipanski/docker-static-website/releases)
 
 ## Usage
 
-The image is hosted on [Docker Hub](https://hub.docker.com/r/lipanski/docker-static-website/tags) and comes with **linux/amd64** and **linux/arm64** builds:
+The image is hosted on [Docker Hub](https://hub.docker.com/r/lipanski/docker-static-website/tags) and comes with **linux/amd64**, **linux/arm64** and **linux/arm/v7** builds:
 
 ```dockerfile
 FROM lipanski/docker-static-website:latest
