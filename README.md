@@ -123,6 +123,8 @@ services:
 
 Make sure to change `/some/local/path` to the path to your static files. Include an empty or valid `httpd.conf` file.
 
+If you use Podman, consider appending the `Z` option to volumes for SELinux labels to apply.
+
 ## Development
 
 Clone the [busybox repo](https://git.busybox.net/busybox/tree) and create a blank config:
